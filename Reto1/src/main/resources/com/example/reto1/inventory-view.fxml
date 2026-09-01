@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #F1F5F9; -fx-background: #F1F5F9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reto1.controller.InventoryController">
+    <content>
+        <VBox spacing="16.0" style="-fx-background-color: #F1F5F9; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;">
+            <padding>
+                <Insets bottom="24.0" left="28.0" right="28.0" top="24.0" />
+            </padding>
+            <children>
+                <!-- Panel 1: Formulario de Registro / Edición -->
+                <VBox spacing="14.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10px; -fx-border-color: #CBD5E1; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                    <children>
+                        <Label style="-fx-text-fill: #0F172A; -fx-font-size: 16px; -fx-font-weight: bold;" text="Datos del Producto" />
+
+                        <GridPane hgap="16.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
+                            </columnConstraints>
+                            <children>
+                                <!-- Código -->
+                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Código / ID:" />
+                                        <TextField fx:id="tfCode" promptText="Ej. P001" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Nombre -->
+                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Nombre del Producto:" />
+                                        <TextField fx:id="tfName" promptText="Ej. Teclado Mecánico" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Precio -->
+                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Precio ($):" />
+                                        <TextField fx:id="tfPrice" promptText="Ej. 49.99" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+
+                                <!-- Cantidad / Stock -->
+                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Cantidad en Stock:" />
+                                        <TextField fx:id="tfStock" promptText="Ej. 20" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+
+                        <!-- Botones de Acción CRUD -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <padding>
+                                <Insets top="6.0" />
+                            </padding>
+                            <children>
+                                <Button fx:id="btnAdd" onAction="#onSaveProduct" style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-background-radius: 6px; -fx-cursor: hand;" text="Agregar" />
+                                <Button fx:id="btnUpdate" onAction="#onUpdateProduct" style="-fx-background-color: #0D9488; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-background-radius: 6px; -fx-cursor: hand;" text="Actualizar" />
+                                <Button fx:id="btnDelete" onAction="#onDeleteProduct" style="-fx-background-color: #EF4444; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-background-radius: 6px; -fx-cursor: hand;" text="Eliminar" />
+                                <Button fx:id="btnClear" onAction="#onClearFields" style="-fx-background-color: #E2E8F0; -fx-text-fill: #475569; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-background-radius: 6px; -fx-cursor: hand;" text="Limpiar Campos" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <!-- Panel 2: Búsqueda y Filtros -->
+                <VBox spacing="14.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10px; -fx-border-color: #CBD5E1; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                    <children>
+                        <Label style="-fx-text-fill: #0F172A; -fx-font-size: 16px; -fx-font-weight: bold;" text="Búsqueda y Filtros" />
+
+                        <!-- Búsqueda por texto (Nombre / Código) -->
+                        <VBox spacing="8.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="16.0">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Buscar por:" />
+                                        <RadioButton fx:id="rbSearchByName" selected="true" style="-fx-text-fill: #334155; -fx-font-size: 12px; -fx-cursor: hand;" text="Nombre (Inicia con...)">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="filterGroup" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton fx:id="rbSearchByCode" style="-fx-text-fill: #334155; -fx-font-size: 12px; -fx-cursor: hand;" text="Código Exacto" toggleGroup="$filterGroup" />
+                                    </children>
+                                </HBox>
+                                <TextField fx:id="tfSearch" onKeyPressed="#onSearchKeyPressed" promptText="Ingrese texto o código y presione ENTER..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                            </children>
+                        </VBox>
+
+                        <Separator style="-fx-background-color: #E2E8F0;" />
+
+                        <!-- Filtros Numéricos: Precio y Stock -->
+                        <GridPane hgap="16.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
+                            </columnConstraints>
+                            <children>
+                                <!-- Filtro por Precio -->
+                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Filtro por Precio ($):" />
+                                        <HBox spacing="8.0">
+                                            <children>
+                                                <ComboBox fx:id="cbPriceCondition" prefWidth="135.0" promptText="Condición" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-font-size: 12px;">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="Mayor que (&gt;)" />
+                                                            <String fx:value="Menor que (&lt;)" />
+                                                            <String fx:value="Igual a (=)" />
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+                                                <TextField fx:id="tfFilterPrice" onKeyPressed="#onSearchKeyPressed" promptText="Ej. 50.00" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 10px; -fx-font-size: 13px;" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <!-- Filtro por Stock -->
+                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Filtro por Stock / Cantidad:" />
+                                        <HBox spacing="8.0">
+                                            <children>
+                                                <ComboBox fx:id="cbStockCondition" prefWidth="135.0" promptText="Condición" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-font-size: 12px;">
+                                                    <items>
+                                                        <FXCollections fx:factory="observableArrayList">
+                                                            <String fx:value="Mayor que (&gt;)" />
+                                                            <String fx:value="Menor que (&lt;)" />
+                                                            <String fx:value="Igual a (=)" />
+                                                        </FXCollections>
+                                                    </items>
+                                                </ComboBox>
+                                                <TextField fx:id="tfFilterStock" onKeyPressed="#onSearchKeyPressed" promptText="Ej. 10" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 10px; -fx-font-size: 13px;" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+
+                        <!-- Botones de Filtrado -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <padding>
+                                <Insets top="4.0" />
+                            </padding>
+                            <children>
+                                <Button fx:id="btnApplyFilters" onAction="#onApplyFilters" style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-background-radius: 6px; -fx-cursor: hand;" text="Aplicar Filtros" />
+                                <Button fx:id="btnResetFilter" onAction="#onResetFilter" style="-fx-background-color: #F1F5F9; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-text-fill: #334155; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-cursor: hand;" text="Mostrar Todos" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <!-- Panel 3: Lista de Productos -->
+                <VBox spacing="12.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10px; -fx-border-color: #CBD5E1; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 6, 0, 0, 2);" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label style="-fx-text-fill: #0F172A; -fx-font-size: 16px; -fx-font-weight: bold;" text="Catálogo de Productos Registrados" />
+
+                        <ListView fx:id="lvProducts" minHeight="220.0" prefHeight="260.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 4px;" VBox.vgrow="ALWAYS" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
