@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #F1F5F9; -fx-background: #F1F5F9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.reto2.controller.CoffeeController">
+    <content>
+        <VBox spacing="18.0" style="-fx-background-color: #F1F5F9; -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;">
+            <padding>
+                <Insets bottom="28.0" left="28.0" right="28.0" top="24.0" />
+            </padding>
+            <children>
+                <VBox spacing="4.0">
+                    <children>
+                        <Label style="-fx-text-fill: #0F172A; -fx-font-size: 22px; -fx-font-weight: bold;" text="Cooperativa Cafetalera" />
+                        <Label style="-fx-text-fill: #64748B; -fx-font-size: 14px;" text="Gestión, consulta, edición y recepción de lotes de café" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="14.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10px; -fx-border-color: #CBD5E1; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                    <children>
+                        <Label style="-fx-text-fill: #0F172A; -fx-font-size: 16px; -fx-font-weight: bold;" text="Registrar Nuevo Lote de Café" />
+
+                        <GridPane hgap="16.0" vgap="12.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
+                            </columnConstraints>
+                            <children>
+                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Código / ID del Lote:" />
+                                        <TextField fx:id="tfId" promptText="Ej. LOTE-005" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Proveedor / Productor:" />
+                                        <TextField fx:id="tfProvider" promptText="Ej. Finca Las Nubes" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Fecha de Recepción:" />
+                                        <DatePicker fx:id="dpDate" maxWidth="1.7976931348623157E308" promptText="Seleccionar fecha..." style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label style="-fx-text-fill: #334155; -fx-font-weight: bold; -fx-font-size: 12px;" text="Peso (kg):" />
+                                        <TextField fx:id="tfWeight" promptText="Ej. 125.50" style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 6px; -fx-background-radius: 6px; -fx-padding: 8px 12px; -fx-font-size: 13px;" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <padding>
+                                <Insets top="6.0" />
+                            </padding>
+                            <children>
+                                <Button fx:id="btnRegister" onAction="#onRegisterBatch" style="-fx-background-color: #2563EB; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-background-radius: 6px; -fx-cursor: hand;" text="Registrar Lote" />
+                                <Button fx:id="btnClear" onAction="#onClearFields" style="-fx-background-color: #E2E8F0; -fx-text-fill: #475569; -fx-font-weight: bold; -fx-padding: 8px 18px; -fx-background-radius: 6px; -fx-cursor: hand;" text="Limpiar" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10px; -fx-border-color: #CBD5E1; -fx-border-radius: 10px; -fx-border-width: 1px; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <Label style="-fx-text-fill: #0F172A; -fx-font-size: 16px; -fx-font-weight: bold;" text="Tabla de Lotes Registrados" />
+                                <Label fx:id="lblTotalBatches" style="-fx-text-fill: #2563EB; -fx-background-color: #EFF6FF; -fx-padding: 3px 10px; -fx-background-radius: 12px; -fx-font-size: 12px; -fx-font-weight: bold;" text="0 lotes" />
+                            </children>
+                        </HBox>
+
+                        <Label style="-fx-text-fill: #64748B; -fx-font-size: 12px;" text="💡 Doble clic en una fila: ver detalles con ID | Clic derecho: menú contextual (Editar / Eliminar lote)" />
+
+                        <TableView fx:id="batchesTable" onMouseClicked="#onBatchesTableMouseClicked" prefHeight="320.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #E2E8F0; -fx-border-radius: 6px;">
+                            <columns>
+                                <TableColumn fx:id="colProvider" prefWidth="350.0" text="Proveedor / Productor" />
+                                <TableColumn fx:id="colDate" prefWidth="200.0" text="Fecha de Recepción" />
+                                <TableColumn fx:id="colWeight" prefWidth="180.0" text="Peso (kg)" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
