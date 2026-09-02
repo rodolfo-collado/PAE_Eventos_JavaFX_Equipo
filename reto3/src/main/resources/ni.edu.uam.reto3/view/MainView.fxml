@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="620.0" prefWidth="980.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ni.edu.uam.reto3.controller.MainController">
+    <top>
+        <VBox>
+            <HBox spacing="0.0" style="-fx-background-color: #ececec; -fx-border-color: #b9b9b9; -fx-border-width: 0 0 1 0;">
+                <Button text="Catalogo" onAction="#showCatalog" style="-fx-background-radius: 0; -fx-padding: 7 16 7 16;" />
+                <Button text="Ventas" onAction="#showSales" style="-fx-background-radius: 0; -fx-padding: 7 16 7 16;" />
+                <Button text="Ayuda" onAction="#showHelp" style="-fx-background-radius: 0; -fx-padding: 7 16 7 16;" />
+            </HBox>
+            <ToolBar fx:id="actionToolbar" />
+        </VBox>
+    </top>
+
+    <center>
+        <StackPane>
+            <VBox fx:id="catalogView" spacing="14.0">
+                <padding>
+                    <Insets top="16.0" right="16.0" bottom="16.0" left="16.0" />
+                </padding>
+
+                <Label text="Catalogo de artesanias nicaraguenses" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="170.0" />
+                        <ColumnConstraints minWidth="80.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="150.0" />
+                    </columnConstraints>
+
+                    <Label text="Producto" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="productNameField" promptText="Ej. Sombrero de palma" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="Categoria" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                    <ComboBox fx:id="productCategoryCombo" maxWidth="Infinity" promptText="Selecciona categoria" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                    <Label text="Precio C$" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <TextField fx:id="productPriceField" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Stock" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <TextField fx:id="productStockField" promptText="0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <Label text="Buscar" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <TextField fx:id="productSearchField" promptText="Nombre, categoria o codigo" onAction="#searchProduct" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                </GridPane>
+
+                <TableView fx:id="productsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="imageColumn" text="Imagen" prefWidth="100.0" resizable="false" />
+                        <TableColumn fx:id="nameColumn" text="Producto" prefWidth="260.0" />
+                        <TableColumn fx:id="categoryColumn" text="Categoria" prefWidth="160.0" />
+                        <TableColumn fx:id="priceColumn" text="Precio C$" prefWidth="120.0" />
+                        <TableColumn fx:id="stockColumn" text="Stock" prefWidth="90.0" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox fx:id="salesView" managed="false" visible="false" spacing="14.0">
+                <padding>
+                    <Insets top="16.0" right="16.0" bottom="16.0" left="16.0" />
+                </padding>
+
+                <Label text="Gestion de ventas" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="110.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="220.0" />
+                        <ColumnConstraints minWidth="90.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="180.0" />
+                    </columnConstraints>
+
+                    <Label text="Cliente" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="customerField" promptText="Nombre del cliente" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label text="Producto" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="saleProductCombo" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label text="Cantidad" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <Spinner fx:id="saleQuantitySpinner" editable="true" initialValue="1" max="999" min="1" prefWidth="120.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <HBox spacing="12.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                        <Label fx:id="saleTotalLabel" text="Total: C$ 0.00" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                    </HBox>
+                </GridPane>
+
+                <TableView fx:id="salesTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="saleNumberColumn" text="#" prefWidth="60.0" />
+                        <TableColumn fx:id="saleDateColumn" text="Fecha" prefWidth="140.0" />
+                        <TableColumn fx:id="saleCustomerColumn" text="Cliente" prefWidth="180.0" />
+                        <TableColumn fx:id="saleProductColumn" text="Producto" prefWidth="260.0" />
+                        <TableColumn fx:id="saleQuantityColumn" text="Cantidad" prefWidth="90.0" />
+                        <TableColumn fx:id="saleTotalColumn" text="Total C$" prefWidth="120.0" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox fx:id="helpView" managed="false" visible="false" spacing="12.0">
+                <padding>
+                    <Insets top="16.0" right="16.0" bottom="16.0" left="16.0" />
+                </padding>
+
+                <Label text="Ayuda" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                <Label wrapText="true" text="Catalogo permite crear productos, buscarlos y revisar inventario con imagen." />
+                <Label wrapText="true" text="Ventas permite seleccionar un producto, indicar cliente y cantidad, validar stock, registrar la venta y descontar inventario." />
+                <Label wrapText="true" text="La barra superior cambia sus botones segun la seccion activa para mostrar solo las acciones utiles en ese contexto." />
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>
